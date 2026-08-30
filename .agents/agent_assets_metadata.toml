@@ -1,0 +1,58 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "vJiejzljCcEm8GgHOcSyt"
+uri = "file://docs/ausease-feature-list-and-workflows.md"
+type = "text"
+title = "ausease — Complete Feature List and Workflows"
+description = "A comprehensive product document covering roles, modules, security, operational workflows, checklist publishing, notifications, demo behavior, and technical services."
+logical_id = "23b59fa8-2a34-48e9-811f-05737c8b925a"
+content_hash = "sha256:cef9b917420f68c149611f98c7dffe93020ddc98348735f542d9737ac897b6f4"
+size = 23946
+mtime_ms = 1788094956359
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:92a21aa3-e948-4623-a390-19976712247a/23b59fa8-2a34-48e9-811f-05737c8b925a/4a07c40c-5fde-4c4d-9734-3f4c11fdb9cd"
+storage_version_token = "1788095209844222"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "ewnMRYTAxWuNv-OMRAolA"
+uri = "file://docs/ausease-ideal-retail-operations-platform-blueprint.md"
+type = "text"
+title = "Download: ausease Retail Operations Platform Blueprint"
+description = "Complete engineering-facing retail operations product and workflow specification in Markdown format."
+logical_id = "b5f423bf-5c45-4e5b-82ad-a44bcb14051f"
+content_hash = "sha256:0ed2fc28917d739dc7dd9fcd53db620ecbb9d0a3ffacc9a78df301f7dc6350d6"
+size = 66599
+mtime_ms = 1788096598683
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:92a21aa3-e948-4623-a390-19976712247a/b5f423bf-5c45-4e5b-82ad-a44bcb14051f/6e165706-44be-419b-9b85-68ec5ead5745"
+storage_version_token = "1788096723886578"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "GQGheJdfCHx-6Rt-YtqXU"
+uri = "file://docs/ausease-retail-operations-platform-blueprint.pdf"
+type = "pdf"
+title = "Download Updated PDF: ausease Retail Operations Platform Blueprint"
+description = "Updated 65-page blueprint with a visual appendix covering Sign in, Home, Tasks, Issues, Team Chat, AI Chat, Control Room, Menu, and Store Settings."
+logical_id = "824cdffe-e9ad-4231-8812-9f698144f196"
+content_hash = "sha256:41b6bddee6a3389b516cfc5d51d1b410dc4468724264e27b390b303b97476518"
+size = 1250859
+mtime_ms = 1788097224627
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:92a21aa3-e948-4623-a390-19976712247a/824cdffe-e9ad-4231-8812-9f698144f196/859ff43c-0c96-47c5-a9a9-92e94e6892b4"
+storage_version_token = "1788097244022312"
+content_type = "application/pdf"
+
+[[outputs]]
+id = "NGFLL4d3RXYrAsAZE2ox1"
+uri = "file://docs/screenshots/ausease-sign-up.jpg"
+type = "image"
+title = "ausease Sign-up Screen"
+description = "Live Expo preview capture of the new branded email/password account creation screen."
+logical_id = "194ceb05-92a7-4145-b360-4eb48e7a5a64"
+content_hash = "sha256:5b2aabb68d12c0aab823c30fb7ef1ea2d3b4b1d4844a55099e097a54e0ccb620"
+size = 30477
+mtime_ms = 1788097512014
+storage_uri = "gcs://replit-rams-assets-janeway/rams/assets/repl:92a21aa3-e948-4623-a390-19976712247a/194ceb05-92a7-4145-b360-4eb48e7a5a64/8634ad6d-7bf8-4f49-ae21-5e56894e05a0"
+storage_version_token = "1788097517060357"
+content_type = "image/jpeg"

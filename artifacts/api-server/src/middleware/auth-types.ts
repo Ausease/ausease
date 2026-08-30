@@ -1,0 +1,1 @@
+export type EnterpriseRole = "employee" | "manager" | "reviewer" | "hq_admin";

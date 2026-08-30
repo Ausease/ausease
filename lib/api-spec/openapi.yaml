@@ -1,0 +1,1178 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: assistant
+    description: Store operations assistant
+  - name: enterprise
+    description: Enterprise access and provisioning
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /assistant:
+    post:
+      operationId: askOperationsAssistant
+      tags: [assistant]
+      summary: Understand and execute a natural-language store request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssistantRequest"
+      responses:
+        "200":
+          description: Assistant response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssistantResponse"
+  /assistant/transcribe:
+    post:
+      operationId: transcribeAssistantVoice
+      tags: [assistant]
+      summary: Transcribe a recorded manager voice request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TranscriptionRequest"
+      responses:
+        "200":
+          description: Transcript
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [transcript]
+                properties:
+                  transcript: { type: string }
+        "400": { description: Invalid audio payload }
+        "413": { description: Recording too large }
+        "415": { description: Unsupported audio format }
+        "429": { description: Too many transcription attempts }
+        "502": { description: Speech provider could not transcribe the recording }
+        "503": { description: Speech service is not configured }
+  /me:
+    get:
+      operationId: getEnterpriseProfile
+      tags: [enterprise]
+      summary: Return the authenticated user's enterprise access context
+      responses:
+        "200":
+          description: Enterprise access context
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EnterpriseProfile"
+        "401": { description: Authentication required }
+        "403": { description: Organization or store assignment required }
+  /admin/provisioning:
+    get:
+      operationId: getEnterpriseProvisioning
+      tags: [enterprise]
+      summary: Return stores, domains, and memberships for headquarters administrators
+      responses:
+        "200":
+          description: Provisioning data
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseProvisioning" }
+        "403": { description: Headquarters administrator access required }
+  /checklists:
+    get:
+      operationId: getPublishedChecklists
+      tags: [enterprise]
+      summary: Return published checklists assigned to the current store and role
+      responses:
+        "200":
+          description: Published checklist standards
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PublishedChecklistResponse" }
+  /checklists/{checklistId}/progress:
+    put:
+      operationId: updateChecklistProgress
+      tags: [enterprise]
+      summary: Record the current user's progress against an assigned published checklist version
+      parameters:
+        - { name: checklistId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChecklistProgressInput" }
+      responses:
+        "200":
+          description: Checklist step progress recorded
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ChecklistProgressResponse" }
+        "400": { description: Invalid progress update }
+        "403": { description: Checklist access or assignment required }
+        "404": { description: Assigned checklist version or item not found }
+  /admin/checklists:
+    get:
+      operationId: getAdminChecklists
+      tags: [enterprise]
+      summary: Return checklist templates, versions, and assignments for headquarters administrators
+      responses:
+        "200":
+          description: Checklist management data
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminChecklistResponse" }
+        "403": { description: Headquarters administrator access required }
+    post:
+      operationId: createChecklistTemplate
+      tags: [enterprise]
+      summary: Create a checklist template and its first draft version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChecklistInput" }
+      responses:
+        "201":
+          description: Checklist draft created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminChecklistTemplate" }
+        "400": { description: Invalid checklist }
+  /admin/checklists/{checklistId}/versions:
+    post:
+      operationId: createChecklistVersion
+      tags: [enterprise]
+      summary: Create an immutable draft version of a checklist template
+      parameters:
+        - { name: checklistId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChecklistVersionInput" }
+      responses:
+        "201":
+          description: Checklist version created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AdminChecklistTemplate" }
+        "400": { description: Invalid checklist }
+        "404": { description: Checklist template not found }
+  /admin/checklists/{checklistId}/versions/{versionId}/publish:
+    post:
+      operationId: publishChecklistVersion
+      tags: [enterprise]
+      summary: Publish a checklist version to selected stores and roles
+      parameters:
+        - { name: checklistId, in: path, required: true, schema: { type: string } }
+        - { name: versionId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChecklistPublishInput" }
+      responses:
+        "200":
+          description: Checklist version published
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ChecklistVersion" }
+        "400": { description: "Invalid stores, roles, or effective date" }
+        "409": { description: Published versions are immutable }
+        "404": { description: Checklist version not found }
+  /admin/domains:
+    post:
+      operationId: addEnterpriseDomain
+      tags: [enterprise]
+      summary: Add a company domain and its SSO provider mapping
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseDomainInput" }
+      responses:
+        "201":
+          description: Domain mapping created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseDomain" }
+  /admin/domains/{domainId}:
+    patch:
+      operationId: updateEnterpriseDomain
+      tags: [enterprise]
+      summary: Update a company domain mapping without accepting provider secrets
+      parameters:
+        - { name: domainId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseDomainUpdate" }
+      responses:
+        "200":
+          description: Domain mapping updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseDomain" }
+  /admin/domains/{domainId}/credentials:
+    post:
+      operationId: configureEnterpriseDomainCredentials
+      tags: [enterprise]
+      summary: Configure a provider using a workspace secret reference
+      description: The server verifies the named workspace secret without accepting or returning its value.
+      parameters:
+        - { name: domainId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseCredentialInput" }
+      responses:
+        "200":
+          description: Provider credentials configured
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseDomain" }
+        "400": { description: Invalid workspace secret key reference }
+        "404": { description: Domain mapping not found }
+        "422": { description: Workspace secret is unavailable or failed validation }
+  /admin/stores:
+    post:
+      operationId: addEnterpriseStore
+      tags: [enterprise]
+      summary: Add a store to the current organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseStoreInput" }
+      responses:
+        "201":
+          description: Store created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseStore" }
+  /admin/stores/{storeId}:
+    patch:
+      operationId: updateEnterpriseStoreGeofence
+      tags: [enterprise]
+      summary: Configure a store geofence
+      parameters:
+        - { name: storeId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseStoreGeofenceInput" }
+      responses:
+        "200":
+          description: Store geofence updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseStore" }
+        "400": { description: Invalid coordinates or radius }
+        "404": { description: Store not found }
+  /admin/memberships:
+    post:
+      operationId: inviteEnterpriseMember
+      tags: [enterprise]
+      summary: Invite a user and assign an initial store and role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseMembershipInput" }
+      responses:
+        "201":
+          description: Membership invitation created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseMembership" }
+  /admin/memberships/{membershipId}:
+    patch:
+      operationId: updateEnterpriseMembership
+      tags: [enterprise]
+      summary: Change a user's store, role, or access status
+      parameters:
+        - { name: membershipId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/EnterpriseMembershipUpdate" }
+      responses:
+        "200":
+          description: Membership updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/EnterpriseMembership" }
+  /audit:
+    get:
+      operationId: getEnterpriseAudit
+      tags: [enterprise]
+      summary: Return recent audit events for the current store
+      responses:
+        "200":
+          description: Recent audit events
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [events]
+                properties:
+                  events:
+                    type: array
+                    items: { $ref: "#/components/schemas/AuditEvent" }
+        "401": { description: Authentication required }
+        "403": { description: "Manager, reviewer, or headquarters role required" }
+  /operations/snapshot:
+    get:
+      operationId: getOperationsSnapshot
+      tags: [enterprise]
+      summary: Return the current store operations snapshot
+      responses:
+        "200":
+          description: Store operations snapshot
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/OperationsSnapshot" }
+        "401": { description: Authentication required }
+    put:
+      operationId: saveOperationsSnapshot
+      tags: [enterprise]
+      summary: Save the current store operations snapshot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/OperationsSnapshot" }
+      responses:
+        "200":
+          description: Saved store operations snapshot
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/OperationsSnapshot" }
+        "401": { description: Authentication required }
+        "403": { description: "The current role cannot update operations" }
+  /operations/records/{kind}/{recordId}:
+    put:
+      operationId: updateOperationsRecord
+      tags: [enterprise]
+      summary: Update one operations record with optimistic concurrency
+      parameters:
+        - { name: kind, in: path, required: true, schema: { type: string, enum: [task, issue, message] } }
+        - { name: recordId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/OperationsRecordUpdate" }
+      responses:
+        "200":
+          description: Accepted operations record
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/OperationsRecord" }
+        "400": { description: Invalid record }
+        "401": { description: Authentication required }
+        "403": { description: The current role cannot update operations }
+        "409":
+          description: Optimistic concurrency conflict
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/OperationsConflict" }
+  /presence/status:
+    get:
+      operationId: getPresenceStatus
+      tags: [enterprise]
+      summary: Return current store and manager presence status
+      responses:
+        "200":
+          description: Presence and checklist access status
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PresenceStatus" }
+        "403": { description: Active store membership required }
+  /presence/check-in:
+    post:
+      operationId: checkInToStore
+      tags: [enterprise]
+      summary: Check in from inside the assigned store
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PresenceCheckInInput" }
+      responses:
+        "200":
+          description: Store presence recorded
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PresenceCheckInResponse" }
+        "400": { description: Invalid location }
+        "403": { description: Outside the configured store geofence }
+        "409": { description: Store geofence not configured }
+  /routines/today:
+    get:
+      operationId: getTodayRoutines
+      tags: [enterprise]
+      summary: Return today's Start of Day and End of Day routines
+      responses:
+        "200":
+          description: Daily operating routines
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TodayRoutinesResponse" }
+  /routines/{routineId}/complete:
+    post:
+      operationId: completeRoutine
+      tags: [enterprise]
+      summary: Complete a daily operating routine
+      parameters:
+        - { name: routineId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RoutineCompletionInput" }
+      responses:
+        "200":
+          description: Routine completed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RoutineInstance" }
+        "422": { description: Required evidence is missing }
+  /routines/{routineId}/evidence/upload-url:
+    post:
+      operationId: requestRoutineEvidenceUploadUrl
+      tags: [enterprise]
+      summary: Request a signed upload URL for routine evidence
+      parameters:
+        - { name: routineId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RoutineEvidenceUploadInput" }
+      responses:
+        "200":
+          description: Signed object upload URL
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RoutineEvidenceUploadResponse" }
+  /routines/{routineId}/evidence:
+    post:
+      operationId: registerRoutineEvidence
+      tags: [enterprise]
+      summary: Register an uploaded routine evidence object
+      parameters:
+        - { name: routineId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RoutineEvidenceRegisterInput" }
+      responses:
+        "201":
+          description: Evidence registered
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RoutineEvidence" }
+  /corrective-actions:
+    post:
+      operationId: createCorrectiveAction
+      tags: [enterprise]
+      summary: Create a manager-owned corrective action
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CorrectiveActionInput" }
+      responses:
+        "201":
+          description: Corrective action created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CorrectiveAction" }
+  /corrective-actions/{actionId}:
+    patch:
+      operationId: updateCorrectiveAction
+      tags: [enterprise]
+      summary: Update a corrective action status
+      parameters:
+        - { name: actionId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [open, completed] }
+      responses:
+        "200":
+          description: Corrective action updated
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CorrectiveAction" }
+  /operations/command-center:
+    get:
+      operationId: getOperationsCommandCenter
+      tags: [enterprise]
+      summary: Return manager and headquarters operations summary
+      responses:
+        "200":
+          description: Exception-driven operations summary
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CommandCenterResponse" }
+  /checklists/access:
+    get:
+      operationId: getChecklistAccess
+      tags: [enterprise]
+      summary: Check whether the current user may open a checklist
+      parameters:
+        - { name: checklistId, in: query, required: false, schema: { type: string } }
+      responses:
+        "200":
+          description: Checklist access is available
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PresenceStatus" }
+        "403":
+          description: Checklist access is blocked by presence requirements
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PresenceStatus" }
+  /checklists/{checklistId}/open:
+    post:
+      operationId: openChecklist
+      tags: [enterprise]
+      summary: Open a checklist after validating store presence
+      parameters:
+        - { name: checklistId, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Checklist opened, content: { application/json: { schema: { $ref: "#/components/schemas/ChecklistAccessResponse" } } } }
+        "403": { description: Presence requirements not met, content: { application/json: { schema: { $ref: "#/components/schemas/ChecklistAccessResponse" } } } }
+  /checklists/{checklistId}/submit:
+    post:
+      operationId: submitChecklist
+      tags: [enterprise]
+      summary: Submit a checklist after validating store presence
+      parameters:
+        - { name: checklistId, in: path, required: true, schema: { type: string } }
+      responses:
+        "200": { description: Checklist submitted, content: { application/json: { schema: { $ref: "#/components/schemas/ChecklistSubmitResponse" } } } }
+        "403": { description: Presence requirements not met, content: { application/json: { schema: { $ref: "#/components/schemas/ChecklistAccessResponse" } } } }
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    AssistantTask:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        area: { type: string }
+        due: { type: string }
+        done: { type: boolean }
+        priority: { type: string, enum: [high, normal] }
+        assignee: { type: string }
+      required: [id, title, area, due, done]
+    AssistantIssue:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        area: { type: string }
+        status: { type: string, enum: [Open, In progress, Resolved] }
+        time: { type: string }
+        urgent: { type: boolean }
+      required: [id, title, area, status, time]
+    AssistantRequest:
+      type: object
+      properties:
+        request: { type: string, minLength: 1 }
+        confirmed: { type: boolean }
+        tasks:
+          type: array
+          items: { $ref: "#/components/schemas/AssistantTask" }
+        issues:
+          type: array
+          items: { $ref: "#/components/schemas/AssistantIssue" }
+      required: [request]
+    AssistantResponse:
+      type: object
+      properties:
+        message: { type: string }
+        intent: { type: string, enum: [answer, create_task, summarize_issues, operations_summary, sop_guidance, clarify] }
+        confirmationRequired: { type: boolean }
+        task:
+          anyOf:
+            - { $ref: "#/components/schemas/AssistantTask" }
+            - { type: "null" }
+        mentions:
+          type: array
+          items: { type: string }
+        auditId: { type: string }
+      required: [message, intent, confirmationRequired, mentions, auditId]
+    TranscriptionRequest:
+      type: object
+      required: [audioBase64]
+      properties:
+        audioBase64: { type: string, format: byte, maxLength: 12000000 }
+        mimeType:
+          type: string
+          description: MIME type of the recorded audio
+          enum: [audio/aac, audio/flac, audio/m4a, audio/mp4, audio/mpeg, audio/mp3, audio/ogg, audio/wav, audio/x-wav, audio/webm]
+    EnterpriseProfile:
+      type: object
+      required: [access, userId, organization, store, role]
+      properties:
+        access: { type: string, enum: [active, invitation_required, disabled, unassigned] }
+        userId: { type: string }
+        organization:
+          anyOf:
+            - { $ref: "#/components/schemas/EnterpriseOrganization" }
+            - { type: "null" }
+        store:
+          anyOf:
+            - { $ref: "#/components/schemas/EnterpriseStore" }
+            - { type: "null" }
+        role: { type: string, enum: [employee, manager, reviewer, hq_admin] }
+    EnterpriseOrganization:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: string }
+        name: { type: string }
+    EnterpriseStore:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        latitude: { type: number, nullable: true }
+        longitude: { type: number, nullable: true }
+        geofenceRadiusMeters: { type: number }
+        geofenceEnabled: { type: boolean }
+    EnterpriseStoreGeofenceInput:
+      type: object
+      required: [latitude, longitude]
+      properties:
+        latitude: { type: number, minimum: -90, maximum: 90 }
+        longitude: { type: number, minimum: -180, maximum: 180 }
+        geofenceRadiusMeters: { type: number, minimum: 25, maximum: 2000 }
+        geofenceEnabled: { type: boolean }
+    EnterpriseDomain:
+      type: object
+      required: [id, organizationId, domain, providerType, providerName, secretConfigured, credentialStatus, credentialVersion, enabled, updatedAt]
+      properties:
+        id: { type: string }
+        organizationId: { type: string }
+        domain: { type: string }
+        providerType: { type: string, enum: [saml, oidc, oauth] }
+        providerName: { type: string }
+        issuerUrl: { type: string, nullable: true }
+        clientId: { type: string, nullable: true }
+        secretConfigured: { type: boolean, description: "Whether the server-side workspace secret is configured; the secret itself is never sent to the client." }
+        credentialStatus: { type: string, enum: [not_configured, configured, error] }
+        credentialValidationError: { type: string, nullable: true }
+        credentialVersion: { type: integer }
+        credentialRotatedAt: { type: string, format: date-time, nullable: true }
+        enabled: { type: boolean }
+        updatedAt: { type: string, format: date-time }
+    EnterpriseMembership:
+      type: object
+      required: [id, organizationId, storeId, clerkUserId, role, status, createdAt, updatedAt]
+      properties:
+        id: { type: string }
+        organizationId: { type: string }
+        storeId: { type: string }
+        clerkUserId: { type: string }
+        email: { type: string, nullable: true }
+        role: { type: string, enum: [employee, manager, reviewer, hq_admin] }
+        status: { type: string, enum: [active, invited, disabled] }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    EnterpriseDomainInput:
+      type: object
+      required: [domain, providerName]
+      properties:
+        domain: { type: string }
+        providerType: { type: string, enum: [saml, oidc, oauth] }
+        providerName: { type: string }
+        issuerUrl: { type: string }
+        clientId: { type: string }
+        secretConfigured: { type: boolean, description: "Deprecated and ignored. Configure credentials through the secure server-side flow." }
+    EnterpriseDomainUpdate:
+      type: object
+      properties:
+        providerName: { type: string }
+        issuerUrl: { type: string, nullable: true }
+        clientId: { type: string, nullable: true }
+        enabled: { type: boolean }
+        secretConfigured: { type: boolean, description: "Deprecated and ignored. Configure credentials through the secure server-side flow." }
+    EnterpriseCredentialInput:
+      type: object
+      required: [secretKey]
+      properties:
+        secretKey:
+          type: string
+          pattern: "^[A-Z][A-Z0-9_]{2,127}$"
+          description: Name of a workspace secret. Its value is resolved only by the server.
+    EnterpriseMembershipInput:
+      type: object
+      required: [email, storeId]
+      properties:
+        email: { type: string }
+        clerkUserId: { type: string }
+        storeId: { type: string }
+        role: { type: string, enum: [employee, manager, reviewer, hq_admin] }
+    EnterpriseStoreInput:
+      type: object
+      required: [name]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        latitude: { type: number, nullable: true }
+        longitude: { type: number, nullable: true }
+        geofenceRadiusMeters: { type: number, minimum: 25, maximum: 2000 }
+    EnterpriseMembershipUpdate:
+      type: object
+      properties:
+        storeId: { type: string }
+        role: { type: string, enum: [employee, manager, reviewer, hq_admin] }
+        status: { type: string, enum: [active, invited, disabled] }
+    EnterpriseProvisioning:
+      type: object
+      required: [domains, stores, memberships]
+      properties:
+        domains:
+          type: array
+          items: { $ref: "#/components/schemas/EnterpriseDomain" }
+        stores:
+          type: array
+          items: { $ref: "#/components/schemas/EnterpriseStore" }
+        memberships:
+          type: array
+          items: { $ref: "#/components/schemas/EnterpriseMembership" }
+    AuditEvent:
+      type: object
+      required: [id, action, resourceType, actorRole, metadata, createdAt]
+      properties:
+        id: { type: string }
+        action: { type: string }
+        resourceType: { type: string }
+        resourceId: { type: string, nullable: true }
+        actorRole: { type: string }
+        metadata: { type: object, additionalProperties: true }
+        createdAt: { type: string, format: date-time }
+    OperationsSnapshot:
+      type: object
+      required: [tasks, issues, messages]
+      properties:
+        tasks:
+          type: array
+          items: { $ref: "#/components/schemas/AssistantTask" }
+        issues:
+          type: array
+          items: { $ref: "#/components/schemas/AssistantIssue" }
+        messages:
+          type: array
+          items:
+            type: object
+            required: [id, author, text, time]
+            properties:
+              id: { type: string }
+              author: { type: string }
+              text: { type: string }
+              time: { type: string }
+              mine: { type: boolean }
+    OperationsRecordUpdate:
+      type: object
+      required: [payload, mutationId, source]
+      properties:
+        payload: { type: object, additionalProperties: true }
+        expectedVersion: { type: integer, minimum: 1 }
+        mutationId: { type: string }
+        source: { type: string, enum: [mobile, offline_queue] }
+    OperationsRecord:
+      type: object
+      required: [id, kind, payload, version]
+      properties:
+        id: { type: string }
+        kind: { type: string, enum: [task, issue, message] }
+        payload: { type: object, additionalProperties: true }
+        version: { type: integer }
+        mutationId: { type: string, nullable: true }
+    OperationsConflict:
+      type: object
+      required: [message, conflict]
+      properties:
+        message: { type: string }
+        conflict: { type: boolean }
+        current: { $ref: "#/components/schemas/OperationsRecord" }
+    PresenceCheckInInput:
+      type: object
+      required: [latitude, longitude]
+      properties:
+        latitude: { type: number, minimum: -90, maximum: 90 }
+        longitude: { type: number, minimum: -180, maximum: 180 }
+        accuracyMeters: { type: number, minimum: 0 }
+    PresenceStatus:
+      type: object
+      required: [allowed, reason, store, userPresent, managerPresent]
+      properties:
+        allowed: { type: boolean }
+        reason: { type: string, enum: [ready, store_not_configured, user_not_checked_in, manager_not_checked_in] }
+        store:
+          anyOf:
+            - { $ref: "#/components/schemas/PresenceStore" }
+            - { type: "null" }
+        userPresent: { type: boolean }
+        managerPresent: { type: boolean }
+        userExpiresAt: { type: string, format: date-time, nullable: true }
+        managerExpiresAt: { type: string, format: date-time, nullable: true }
+    PresenceStore:
+      type: object
+      required: [id, name, radiusMeters, geofenceEnabled]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        radiusMeters: { type: number }
+        geofenceEnabled: { type: boolean }
+    PresenceCheckInResponse:
+      allOf:
+        - { $ref: "#/components/schemas/PresenceStatus" }
+        - type: object
+          required: [checkedIn, role, expiresAt, distanceMeters]
+          properties:
+            checkedIn: { type: boolean }
+            role: { type: string, enum: [employee, manager] }
+            expiresAt: { type: string, format: date-time }
+            distanceMeters: { type: number }
+    ChecklistAccessResponse:
+      allOf:
+        - { $ref: "#/components/schemas/PresenceStatus" }
+        - type: object
+          required: [checklistId]
+          properties:
+            checklistId: { type: string }
+    ChecklistSubmitResponse:
+      allOf:
+        - { $ref: "#/components/schemas/ChecklistAccessResponse" }
+        - type: object
+          required: [submitted]
+          properties:
+            submitted: { type: boolean }
+    RoutineCompletionInput:
+      type: object
+      properties:
+        evidenceCount: { type: integer, minimum: 0 }
+        evidenceIds:
+          type: array
+          items: { type: string }
+    RoutineEvidenceUploadInput:
+      type: object
+      required: [fileName, contentType, size]
+      properties:
+        fileName: { type: string }
+        contentType: { type: string }
+        size: { type: integer, minimum: 1, maximum: 10485760 }
+    RoutineEvidenceUploadResponse:
+      type: object
+      required: [uploadURL, objectPath, routineInstanceId, fileName, contentType]
+      properties:
+        uploadURL: { type: string, format: uri }
+        objectPath: { type: string }
+        routineInstanceId: { type: string }
+        fileName: { type: string }
+        contentType: { type: string }
+    RoutineEvidenceRegisterInput:
+      type: object
+      required: [objectPath, fileName, contentType]
+      properties:
+        objectPath: { type: string }
+        fileName: { type: string }
+        contentType: { type: string }
+        correctiveActionId: { type: string }
+    RoutineEvidence:
+      type: object
+      required: [id, routineInstanceId, objectPath, fileName, contentType, uploadedBy, createdAt, url]
+      properties:
+        id: { type: string }
+        routineInstanceId: { type: string }
+        objectPath: { type: string }
+        fileName: { type: string }
+        contentType: { type: string }
+        uploadedBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        url: { type: string }
+    RoutineInstance:
+      type: object
+      required: [id, routineId, name, routineType, dueTime, assignedRole, evidenceRequired, status, evidenceCount]
+      properties:
+        id: { type: string }
+        routineId: { type: string }
+        name: { type: string }
+        routineType: { type: string, enum: [sod, eod] }
+        dueTime: { type: string }
+        assignedRole: { type: string }
+        evidenceRequired: { type: boolean }
+        status: { type: string, enum: [not_started, overdue, completed] }
+        completedAt: { type: string, format: date-time, nullable: true }
+        evidenceCount: { type: integer }
+        escalatedAt: { type: string, format: date-time, nullable: true }
+        evidence:
+          type: array
+          items: { $ref: "#/components/schemas/RoutineEvidence" }
+    ChecklistInput:
+      type: object
+      required: [name, summary, owner, evidenceRule, items]
+      properties:
+        name: { type: string, minLength: 1 }
+        summary: { type: string, minLength: 1 }
+        owner: { type: string, minLength: 1 }
+        evidenceRule: { type: string, minLength: 1 }
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/ChecklistItemInput" }
+    ChecklistVersionInput:
+      type: object
+      required: [summary, owner, evidenceRule, items]
+      properties:
+        summary: { type: string, minLength: 1 }
+        owner: { type: string, minLength: 1 }
+        evidenceRule: { type: string, minLength: 1 }
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/ChecklistItemInput" }
+    ChecklistItemInput:
+      type: object
+      required: [title, guidance]
+      properties:
+        title: { type: string, minLength: 1 }
+        guidance: { type: string, minLength: 1 }
+        required: { type: boolean, default: true }
+        owner: { type: string }
+    ChecklistPublishInput:
+      type: object
+      required: [storeIds, roles]
+      properties:
+        storeIds:
+          type: array
+          minItems: 1
+          items: { type: string }
+        roles:
+          type: array
+          minItems: 1
+          items: { type: string, enum: [employee, manager, reviewer, hq_admin, all] }
+        effectiveAt: { type: string, format: date-time }
+    ChecklistItem:
+      allOf:
+        - $ref: "#/components/schemas/ChecklistItemInput"
+        - type: object
+          required: [id, position, owner]
+          properties:
+            id: { type: string }
+            position: { type: integer }
+            owner: { type: string }
+    PublishedChecklistItem:
+      allOf:
+        - $ref: "#/components/schemas/ChecklistItem"
+        - type: object
+          required: [completed]
+          properties:
+            completed: { type: boolean }
+    ChecklistVersion:
+      type: object
+      required: [id, templateId, version, evidenceRule, status, createdBy, createdAt]
+      properties:
+        id: { type: string }
+        templateId: { type: string }
+        version: { type: integer }
+        evidenceRule: { type: string }
+        status: { type: string, enum: [draft, published] }
+        effectiveAt: { type: string, format: date-time, nullable: true }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        publishedAt: { type: string, format: date-time, nullable: true }
+    PublishedChecklist:
+      type: object
+      required: [id, versionId, version, name, summary, owner, evidenceRule, effectiveAt, assignedRole, workDate, items]
+      properties:
+        id: { type: string }
+        versionId: { type: string }
+        version: { type: integer }
+        name: { type: string }
+        summary: { type: string }
+        owner: { type: string }
+        evidenceRule: { type: string }
+        effectiveAt: { type: string, format: date-time, nullable: true }
+        assignedRole: { type: string }
+        workDate: { type: string, format: date }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/PublishedChecklistItem" }
+    PublishedChecklistResponse:
+      type: object
+      required: [checklists]
+      properties:
+        checklists:
+          type: array
+          items: { $ref: "#/components/schemas/PublishedChecklist" }
+    ChecklistProgressInput:
+      type: object
+      required: [versionId, itemId, completed]
+      properties:
+        versionId: { type: string, minLength: 1 }
+        itemId: { type: string, minLength: 1 }
+        completed: { type: boolean }
+    ChecklistProgressResponse:
+      type: object
+      required: [id, checklistId, versionId, itemId, workDate, completed, updatedAt]
+      properties:
+        id: { type: string }
+        checklistId: { type: string }
+        versionId: { type: string }
+        itemId: { type: string }
+        workDate: { type: string, format: date }
+        completed: { type: boolean }
+        updatedAt: { type: string, format: date-time }
+    ChecklistAssignment:
+      type: object
+      required: [id, versionId, organizationId, storeId, role, createdAt]
+      properties:
+        id: { type: string }
+        versionId: { type: string }
+        organizationId: { type: string }
+        storeId: { type: string }
+        role: { type: string }
+        createdAt: { type: string, format: date-time }
+    AdminChecklistVersion:
+      allOf:
+        - $ref: "#/components/schemas/ChecklistVersion"
+        - type: object
+          required: [items, assignments]
+          properties:
+            items:
+              type: array
+              items: { $ref: "#/components/schemas/ChecklistItem" }
+            assignments:
+              type: array
+              items: { $ref: "#/components/schemas/ChecklistAssignment" }
+    AdminChecklistTemplate:
+      type: object
+      required: [id, organizationId, name, summary, owner, createdBy, active, createdAt, versions]
+      properties:
+        id: { type: string }
+        organizationId: { type: string }
+        name: { type: string }
+        summary: { type: string }
+        owner: { type: string }
+        createdBy: { type: string }
+        active: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        versions:
+          type: array
+          items: { $ref: "#/components/schemas/AdminChecklistVersion" }
+    AdminChecklistResponse:
+      type: object
+      required: [checklists]
+      properties:
+        checklists:
+          type: array
+          items: { $ref: "#/components/schemas/AdminChecklistTemplate" }
+    TodayRoutinesResponse:
+      type: object
+      required: [dateKey, routines]
+      properties:
+        dateKey: { type: string }
+        routines:
+          type: array
+          items: { $ref: "#/components/schemas/RoutineInstance" }
+    CorrectiveActionInput:
+      type: object
+      required: [title]
+      properties:
+        title: { type: string }
+        sourceIssueId: { type: string }
+        sourceRoutineId: { type: string }
+        ownerClerkUserId: { type: string }
+        dueAt: { type: string, format: date-time }
+        evidenceRequired: { type: boolean }
+    CorrectiveAction:
+      type: object
+      required: [id, storeId, title, status, evidenceRequired, createdBy, createdAt]
+      properties:
+        id: { type: string }
+        storeId: { type: string }
+        sourceIssueId: { type: string, nullable: true }
+        sourceRoutineId: { type: string, nullable: true }
+        title: { type: string }
+        ownerClerkUserId: { type: string, nullable: true }
+        dueAt: { type: string, format: date-time, nullable: true }
+        status: { type: string, enum: [open, completed] }
+        evidenceRequired: { type: boolean }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        evidence:
+          type: array
+          items: { $ref: "#/components/schemas/RoutineEvidence" }
+    CommandCenterMetrics:
+      type: object
+      required: [tasksTotal, tasksCompleted, openIssues, openActions, overdueRoutines, approvalBottlenecks]
+      properties:
+        tasksTotal: { type: integer }
+        tasksCompleted: { type: integer }
+        openIssues: { type: integer }
+        openActions: { type: integer }
+        overdueRoutines: { type: integer }
+        approvalBottlenecks: { type: integer }
+    CommandCenterResponse:
+      type: object
+      required: [generatedAt, store, metrics, routines, actions, stores]
+      properties:
+        generatedAt: { type: string, format: date-time }
+        store: { type: object, additionalProperties: true }
+        metrics: { $ref: "#/components/schemas/CommandCenterMetrics" }
+        routines:
+          type: array
+          items: { $ref: "#/components/schemas/RoutineInstance" }
+        actions:
+          type: array
+          items: { $ref: "#/components/schemas/CorrectiveAction" }
+        stores:
+          type: array
+          items: { type: object, additionalProperties: true }
+

@@ -1,0 +1,50 @@
+{
+  "expo": {
+    "name": "ausease",
+    "slug": "ausease",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/ausease-app-icon.png",
+    "scheme": "ausease",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/ausease-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F0E6"
+    },
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {},
+    "web": {
+      "favicon": "./assets/images/ausease-app-icon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://replit.com/"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow ausease to use Face ID to securely access your store workspace."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow ausease to verify you are at your store before opening checklists."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}

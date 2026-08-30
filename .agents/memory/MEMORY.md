@@ -1,0 +1,9 @@
+- [Operations assistant safety](operations-assistant-safety.md) — ambiguous delegation must ask for an explicit owner; never infer a team or generic recipient.
+- [Tenant access boundaries](tenant-access-boundaries.md) — active membership and both tenant keys must guard enterprise data and mobile persistence.
+- [API codegen Zod compatibility](api-codegen-zod.md) — integer schemas may need compatibility normalization after generation.
+- [PostgreSQL concurrency tests](postgres-concurrency-tests.md) — live operation tests need tenant parents and fresh DB package declarations.
+- [Deployment schema drift contract](schema-drift-contract.md) — explicit reviewed columns are compared with PostgreSQL metadata using read-only queries before release.
+- [Demo preview isolation](demo-preview-isolation.md) — profile switching is development-only local state, not a Clerk session or production role.
+- [Expo UI test harness](expo-ui-test-harness.md) — CommonJS Expo UI tests need Node module mocks and the same React Query module entry as the rendered screen.
+- [Expo decorative pointer events](expo-pointer-events.md) — use style.pointerEvents for non-interactive artwork; the View prop is deprecated on Expo/RN web.
+- [Checklist versioning](checklist-versioning.md) — published standards are immutable and targeted by effective store and role audience.

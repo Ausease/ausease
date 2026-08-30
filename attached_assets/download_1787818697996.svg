@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="238" height="48" viewBox="0 0 238 48" fill="none">
+  <title>ausease logo</title>
+  <desc id="desc">Ausease circular mark and wordmark</desc>
+  <g transform="translate(2 11)">
+    <circle cx="13" cy="13" r="11.5" stroke="#182333" stroke-width="2"/>
+    <path d="M7.5 14.2L13.2 10.5" stroke="#182333" stroke-width="2" stroke-linecap="round"/>
+    <path d="M16 9.3L20.6 13.4" stroke="#182333" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="44" y="33" fill="#182333" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="700" letter-spacing="-1.7">ausease</text>
+</svg>

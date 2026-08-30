@@ -1,3 +1,0 @@
-# Ausease
-
-Retail operations platform.

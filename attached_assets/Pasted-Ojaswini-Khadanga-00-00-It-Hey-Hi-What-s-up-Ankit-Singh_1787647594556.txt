@@ -1,0 +1,286 @@
+Ojaswini Khadanga (00:00): It. Hey. Hi. What's up?
+
+Ankit Singh (00:41): Hi. All good? All good. What's up with you?
+
+Ojaswini Khadanga (00:44): Nothing.
+
+Ankit Singh (00:48): Still in Bangalore?
+
+Ojaswini Khadanga (00:50): Yeah. Nice. How's Australia?
+
+Ankit Singh (00:56): It's. It's pretty cold today. In general, it's quite boring. I miss Bangalore. I've just added the AI note taker for me.
+
+Ojaswini Khadanga (01:08): Yeah, that's all right. Yeah, that's fine. Okay. So. All right. Have you gone through the website? Like you have any idea?
+
+Ankit Singh (01:20): Yeah. So I think reached out to me in Jan. Of this year regarding this and yeah, that time I. I had logged in and I think there were fewer agents back then. Four to five agents suppose, but now there are more. I. I do understand how it works in terms of what happens, but I would want to see, you know, if I'm presenting a demo, I would want to see how to take a person, for example, a VM head or OPS head. It's going to be completely different. So.
+
+Ojaswini Khadanga (01:57): Yeah. All right, cool. Let me share my screen.
+
+Ankit Singh (02:01): Sure.
+
+Ojaswini Khadanga (02:06): And you know, since you have seen Vuger, it's pretty similar, but there are a lot of new features and things that you might want to see. I'll start with the first one and then we'll go in the same order. This is Docu Chat. One second. Let me log in first. Like Pavitra said, he'll create a demo account.
+
+Ankit Singh (02:33): Yeah, he's done that.
+
+Ojaswini Khadanga (02:36): Ankit, I believe, will be ankit.opsara IO.
+
+Ankit Singh (02:44): So every single time the person, when he or she has to log in, they have to use the demo account?
+
+Ojaswini Khadanga (02:51): Yes.
+
+Ankit Singh (02:52): No, in terms of the customer, would they have a sso?
+
+Ojaswini Khadanga (02:57): Yes, they would also have to log in. So, okay, how it works is so there are three profiles, right? The admin reviewer and the user. So we want the adoption to be higher and if we have a new tool or a new app, then the adoption is usually not so high because then you have to go through training again and they just want to not really fill out the forms and do what they're supposed to do. So what we do is there is a dedicated WhatsApp channel. All tasks, all forms, documents, everything that the user has to do. He'll get a link on WhatsApp. Yeah, they can just click on it and the form will open directly through WhatsApp. It's linked through WhatsApp.
+
+Ojaswini Khadanga (03:51): And they don't have to download an app or anything, they can just fill it directly from here. For example, I'll just. This is an attendance link. So yeah, you'll just click a picture and it's done.
+
+Ankit Singh (04:01): Okay, got it.
+
+Ojaswini Khadanga (04:02): There is a web app for users. Also it's user.opsaraio in case they want to see anything, they can just login into it.
+
+Ankit Singh (04:15): Okay.
+
+Ojaswini Khadanga (04:17): They can access everything over here. But I'll come to this later. Let me first.
+
+Ankit Singh (04:22): Yeah,.
+
+Ojaswini Khadanga (04:26): Yeah. Okay. So this is Docu. This is basically a knowledge base. All SOPs, policies, guidelines, leave attendance policies. Every document that has to be shared is shared through Docube. Assigning list or documents is very similar across all agents. So for example, I want to say. So this is my document library.
+
+Ankit Singh (04:53): Yeah.
+
+Ojaswini Khadanga (04:54): These are all documents that I have uploaded. But if I have to share a document to anybody, I can just. Let's say I put this, I'll upload this and I can share it to certain. Like let's say I wanted to share it with all store managers and then I'll just upload. Yeah, yeah. And I'm also a store manager, so I got a notification. This is how the document will be shared.
+
+Ankit Singh (05:30): Got it, got it. So since attendance and stuff, that's a daily thing, right?
+
+Ojaswini Khadanga (05:39): Yes, it is a daily thing. I mean it can be configured however they want.
+
+Ankit Singh (05:43): Okay. So the thing is, are there like cyclic sort of documents which get repeated over and over again? So for example, for a store manager, he has to. He or she has to be in the store for let's say six days a week, right? Yeah.
+
+Ojaswini Khadanga (05:59): This is not attendance, this is document. This is just document.
+
+Ankit Singh (06:05): This is just, you know like facade pictures or anything else.
+
+Ojaswini Khadanga (06:09): So I'll go on them. This is just document sharing. Right. For attendance, the agent is called Punch. For your daily operations, your store opening, your store closing checklist, all of those checklists go through Cinch. Your DSR goes through kpo. For VM visual merchandising checklist, it goes through Muse. Then for assessments, it's acta. For audit, it's code. And for all communication chats, task, it's hub.
+
+Ankit Singh (06:46): Got it. Yeah. So document is. It's more of like a one off. If there is a new SOP in place and you want everybody. Got it.
+
+Ojaswini Khadanga (06:57): So the feature, the AI thing over here is if you want to access anything from any document, you can just simply type. I would ask any question here, for example, It will just go through all the documents that are assigned to me and give me the answer. And you can ask the same question over WhatsApp as well.
+
+Ankit Singh (07:31): Okay.
+
+Ojaswini Khadanga (07:32): So the users, they can just simply answer, ask the question on WhatsApp and similarly I will go through all the documents and give them the answer.
+
+Ankit Singh (07:40): Got it.
+
+Ojaswini Khadanga (07:42): All right. Any questions or anything you want to know.
+
+Ankit Singh (07:45): No, no, this is straightforward.
+
+Ojaswini Khadanga (07:46): Understood. Then punch is very similar. So this is attendance. So you just create a new shift. For example, I want an afternoon shift. And I'll just create the shift. So after I've created the shift, you need to assign it every time. This is the first like a set it and forget it thing. I'll do this step once and then every day this will keep going automatically. I don't have to do it again and again.
+
+Ankit Singh (08:29): Understood. So one question I had here in Australia, how it works is generally individuals don't have everyday shifts because since it's. It's more or less part timers who come in. So they probably have two shifts in a week or three shifts in a week. It can be configured.
+
+Ojaswini Khadanga (08:52): Right, okay. Yeah. All of that can be done. And there is one more thing. So one person might be working from one store or today and then next day from another store or shift. So what they are doing is they are maintaining in a Google and Excel sheet update and that is then it's like out of box integration, it's linked with this and then we shift automatically configure, the message goes to them.
+
+Ankit Singh (09:32): Got it? Understood? Yeah.
+
+Ojaswini Khadanga (09:36): All right. This is how attendance works. I just showed you already exists. I'm not sharing it again. I'll just show you the one that I have. Yeah. So because I am opening this on laptop, because you will be giving demos from laptop, you can attach photos from gallery.
+
+Ankit Singh (09:57): Yeah.
+
+Ojaswini Khadanga (09:58): Otherwise if you're doing it on watch, this link is expired. So just. Excuse me.
+
+Ankit Singh (10:05): Understood how it works? Yeah.
+
+Ojaswini Khadanga (10:07): Six Second. So this is user observer IO. This is what the users will see. All their pending tasks will come over here, Dashboards, their task documents and history. So all tasks will come here. These are pending tasks complete.
+
+Ankit Singh (10:54): And they can ask it on WhatsApp as well. Right. How many pending tasks do I have?
+
+Ojaswini Khadanga (10:58): Yeah, yeah. WhatsApp will also give a list with the link as well. Then this is documents, all the documents that are assigned to me. So same like docu, I can ask questions over here as well and on WhatsApp as well and I can access all the documents and download them that have been shared with me. And this is history. So all attendance, let's say your staff. If I want to see last month attendance. So I can just put a filter and put a date. Yeah. So for the month of June, all these days my attendance was punched and I can just see it over here.
+
+Ankit Singh (11:47): Got it.
+
+Ojaswini Khadanga (11:50): All right. Yeah. This is attendance. Any questions? I think straightforward. So similarly On Cinch, this is your daily checklist, your store opening, store closing, all those checklists. So you can just download a CSV and if you have an existing. Yeah, if you have an existing set of checklist, you can just upload it over here, save it. I think it's similar to how. And you just upload it over here. And once you have uploaded it, I have something ready. One second. Yeah, once I've uploaded it, I can select the audience again. Let's say I just want us to go to me. Yeah. And I've just received this checklist. So I'll click on this and the checklist will open. I'll just answer all the questions.
+
+Ojaswini Khadanga (13:24): You can make photo submissions mandatory. You can make it, you know, based on your questions. You can change the checklist.
+
+Ankit Singh (13:32): Similar to Vuka.
+
+Ojaswini Khadanga (13:34): Yeah, exactly. Yeah. Anything you want to understand from this?
+
+Ankit Singh (13:41): No, I think it's straightforward.
+
+Ojaswini Khadanga (13:43): Yeah. Similarly, KPO is very similar to Cinch. You download it, you upload it, you roll it out. Very similar. I'll show you on Insights platform capabilities. I'll show you vm. This is very interesting. So for example, I'll create a new checklist. You can create a surprise checklist or you can create it weekly or monthly or quarterly, whatever you want. You can upload a reference image over here. So what AI will do is based on the reference image that I will provide. It will. Yeah. So I want my facade to be well lit and neat and clean. So I'll upload a reference image that I want all stores to submit images similar to this. And I'll also give some instructions. Yeah, facade should be valid and clean.
+
+Ojaswini Khadanga (14:53): And I can also toggle this on. This is check with upload. So while clicking the photographs, the AI will automatically give a score even before submitting whether how much compliant it is based on the reference image.
+
+Ankit Singh (15:10): Got it.
+
+Ojaswini Khadanga (15:12): This is something people usually like and they, they would want it because it makes it easier for them to track everything. Yeah. Similarly, I roll it out to store managers and send. So if in case, for example, I just rolled it out, I haven't received WhatsApp because there is no assigned users over here I'll just click assigned users and click my name and just click Reason. WhatsApp. This is the checklist. Yeah. I'll take a photo now because this is from laptop I can. But this can be configured that even on laptop you cannot upload from gallery. You have to click live pictures. Let me show you inside stuff how reviewer and headquarter will see this. So this is opsara Insights, all dashboards, all.
+
+Ojaswini Khadanga (16:54): All data, all images that have been submitted, your managers and headquarter people, they'll get to see everything. Over here, I'll show you the image that I just submitted. So this is Muse. So you will get all data for your number of stores submissions that have been made. Then based on regions, how many charts have been created, how many submissions have been done. So for example, if, let's say for this particular period of time west region has not made any chats, that means they're not giving feedback. If they're not giving feedback, that means they are not really doing what they're saying. Then you can see submissions over time. Most responsive store, least responsive stores, most discussed area. So let's say maybe facade or back area is a common issue across all stores.
+
+Ojaswini Khadanga (17:46): So then you can look into it, your VM ratings, top five, bottom five stores, store gallery. Okay, let me show you the image that I just submitted. So you just click over here on top gallery. I think it was south. Okay. So this is the image that I submitted. It's taking some time to load. Once again, This might be a bug X again.
+
+Ankit Singh (19:08): That's all right. I got the gist of it. And from there the person, the admin or whoever it is, the reviewer.
+
+Ojaswini Khadanga (19:16): Yeah.
+
+Ankit Singh (19:16): Can go in and create a task for the store.
+
+Ojaswini Khadanga (19:18): If it's not, I just wanted to show you one image, just show you, like how the AI gives feedback. Data we almost deleted. Keeps cleaning this up because.
+
+Ankit Singh (19:41): Got it. Yeah. So if I want to create a demo of my own.
+
+Ojaswini Khadanga (19:49): Yeah.
+
+Ankit Singh (19:49): I can just label it under my name and create it directly from that. Yep. Okay. Just download it and see if it's.
+
+Ojaswini Khadanga (20:00): No, no, I think.
+
+Ankit Singh (20:04): Got it. Yeah,.
+
+Ojaswini Khadanga (20:48): There is a video. I can share it with you. You can watch it once again, abhidekha.
+
+Ankit Singh (21:12): It.
+
+Ojaswini Khadanga (21:43): Yeah. So this is while uploading. AI will give you a compliance code and feedback. So if, let's say because over here I had given some. One second. I had given a reference image, that mannequin should be wearing white kurta and there should be a yellow and I uploaded something very different. So it's giving me a feedback and a compliance score. This is while uploading and yeah, so this is how it will look on Insights opsara and again, give me a score and when I open will give me the reason issues. What exactly was wrong with it? Yes, this is how it will look. Let me show you one thing.
+
+Ojaswini Khadanga (22:37): So if I, if I have to give any feedback over here or if I don't like it, I'll Just say re upload, click again and re upload. As soon as in this image, a new thread will open. A chat thread specifically for this image feedback, which this manager or whoever has submitted the image will get as a WhatsApp notification that it will tell me that some feedback has been shared specifically on facade. Just click this and it will open up. This is a task thread. And I'll just maybe click another picture. And I'll just upload it over here, which will. Once again,.
+
+Ankit Singh (23:57): That's all right. I understood.
+
+Ojaswini Khadanga (24:00): Yeah. Okay. But anyway, tk, this is the image and I can close the chat. One second. I can conclude the conversation. I'm satisfied with the image, and I will select which image I want to keep as the final image. All of this will be documented. That. Okay. Maybe four or five pictures were clicked and then this was the final picture that I was happy with.
+
+Ankit Singh (24:26): Yeah.
+
+Ojaswini Khadanga (24:29): Yeah. This is vm. Any questions? Anything?
+
+Ankit Singh (24:34): No, no. It's. It's straightforward. Yeah.
+
+Ojaswini Khadanga (24:36): Yeah. And then this is Apta. This is assessment. Let me just roll out something. This looks. Okay.
+
+Ankit Singh (25:40): Yeah.
+
+Ojaswini Khadanga (25:40): So this is again how assessment will come. Click on this. I. So questions won't appear until and unless I've read the document.
+
+Ankit Singh (25:49): Yeah.
+
+Ojaswini Khadanga (25:50): When people at headquarters usually want staff to first read the document or watch the video. Once I have seen the document, read it, I'll go back, I'll confirm that I've read it, and then I can answer the question. Similarly, there's an image. I have to view it for three seconds, then only the question will appear. I don't know. Let me answer. Let me feel this.
+
+Ankit Singh (26:26): You can't fast forward the videos as well, right? Or can you?
+
+Ojaswini Khadanga (26:30): I. No, you can't.
+
+Ankit Singh (26:32): Okay.
+
+Ojaswini Khadanga (26:34): So I have to watch 80% of the video to other questions to unlock. Now, I have failed the assessment. So I will get the link again saying that I have failed this. I have to retry it. If I passed it, then I will get a like a congratulations score. Congratulations. You have scored this much and you have passed it.
+
+Ankit Singh (27:11): Correct.
+
+Ojaswini Khadanga (27:14): Then this is Apta. And then there is Scout Audit. Honestly, I've also not played with this much. We created this for a customer who wanted this. But again, it's very similar. You download a CSV, upload it back, roll it out to groups, and this.
+
+Ankit Singh (27:38): Is predominantly just for the audit team, right?
+
+Ojaswini Khadanga (27:40): Audit. Exactly. Yeah.
+
+Ankit Singh (27:42): So.
+
+Ojaswini Khadanga (27:42): So Titan wanted. They have a specific requirement. That's when we created this.
+
+Ankit Singh (27:52): Got it.
+
+Ojaswini Khadanga (27:55): This, you can play with Hura Scout. I am not very. This is again your hub. So all the feedback, all of those open feedbacks will come here. All of the. These are all the feedbacks that have also that have been closed. So I can see all of it here. Now there is another thing which is tasks on Apsara. One second. Yeah. I can create a channel. Say I'll. You still don't have the demo id, right?
+
+Ankit Singh (28:42): I got it. I haven't logged in. So once I log in probably it.
+
+Ojaswini Khadanga (28:46): Might pop up if you. Hi. Because I would have probably assigned and I could tickets. Okay. Yeah, let me just. Again I can name it. I'll. So iska idea. A lot of people wanted task management and specifically for stores or internally in their teams or maybe if they want to assign tasks to themselves specifically this was created and what Pavitra has done is all these tools like Slack or that are there in the market just taken all the best part from all these tools and then created this.
+
+Ankit Singh (29:32): Got it.
+
+Ojaswini Khadanga (29:33): So let's say again I want this for store managers or I could usually select people and I'll create a channel. I can create a new task simply by clicking here or I can just type here slash task and press enter and this. This window will open. Create a new task, put a description, priority due date, photo required or not. I can. I can assign it to multiple people, everybody or one second selected people. So this is how it will look in the channel. Now if let's say me I am the store manager who was assigned and I am confused. I don't know. I want to ask something.
+
+Ojaswini Khadanga (30:44): I don't need to just clutter the channel open thread and I can just ask regarding to this task and all communication for this particular task will be over on this thread I can also tag people at the rate say if I've started it, I'll just mark it as start which you will see here at mentions. Oh this is the just mentions. One second. This is task dashboard for all tasks that are created by me. All tasks are assigned to me. There is all tasks that are open that are in progress that have been completed. I'll see over here. Let's say these tasks are open so I can see once it is completed. Of course you'll see there is an option to reopen tasks. I complete this.
+
+Ojaswini Khadanga (31:57): And I am as a person who was assigned this as I'm not happy I'll. I can reopen it. All of that log, cup open, close. All of that will also be tracked.
+
+Ankit Singh (32:10): Got it.
+
+Ojaswini Khadanga (32:11): So that is task management. Now this is useful for two internally teams. So their marketing team wants this because the general manager or the founder who. Or the head of marketing who takes care of marketing. He wants to assign tasks and store teams. We use if, let's say particular store. Then again regional managers or area managers. They can assign a task to a particular store. So then it be to a particular person. Anybody in the task can pick it up and complete it.
+
+Ankit Singh (32:57): Correct.
+
+Ojaswini Khadanga (33:01): I think I've shown you everything. Essentially. That is all. Yeah. And yeah, when you open the hub, all these 29. This mark is basically all the pending mentions or tasks that have been assigned to me.
+
+Ankit Singh (33:20): Got it. Understood. So mainly the individuals who would be using it over here would be the users. But very minimal users.
+
+Ojaswini Khadanga (33:33): No, not here. Users will be mostly on.
+
+Ankit Singh (33:36): On just WhatsApp, the reviewers and the admin would be the ones. Right.
+
+Ojaswini Khadanga (33:42): And users will be over here as well. User IO. This is their dashboard. So they will be using it either from here or on WhatsApp. This is for. Yeah, reviewers or area managers. Zonal managers will be creating the checklist and the admin. Sorry, yeah, the headquarter people, they will be on. Where did it go? Yeah, Insights Upsara IO. So see, for assessment for every agent there are really good dashboards. You can obviously download it in Excel and PDF as well. For example, this is assessment. So how many assessments have been attempted? What is the average score? All these dashboards. This is cinch.
+
+Ankit Singh (34:36): Yeah,.
+
+Ojaswini Khadanga (34:42): Yeah. So completion by zone trend. This is average compliance store tracking responsive stores. Again, completion by region. Most problematic areas on attendance. You can also see if you want to drill deeper, you can just go on deal report and you can just. I think it's maybe any data, but yeah, you will see all records over here.
+
+Ankit Singh (35:15): Got it.
+
+Ojaswini Khadanga (35:17): And you can download Excel and then share it. For example, there are 24 stores, 100 are expected to be on duty. People have not. This is real time. So hundreds have not checked in stores where there are no people. So you can just download all this and maybe, you know, put it in the group and ask what's happening? Why are there no people in the stores?
+
+Ankit Singh (35:40): Got it. And also since it's geofence, they would not be able to submit anything unless and until they're in the store. Right?
+
+Ojaswini Khadanga (35:49): Correct. Yes, it's geodant. And okay, one more thing. So the photograph that I submitted, the image, this is my profile photo. When I submit any picture attendance, it will. One second. So yeah, it will give me a grooming score and an identity score. So based on my profile picture, that entry score is there. And then grooming is. Yeah,.
+
+Ankit Singh (36:41): Perfect. Looks good.
+
+Ojaswini Khadanga (36:43): Interesting. Use case Bombay shirt. Company there, they have this checklist where their entire team has to click a photo when they come into the. At the end of the day or probably during middle of this entire team has to be in proper uniform and they click a proper group photograph. So they are using this muse. They upload a reference. They have uploaded a reference image and some instructions that this is how the team should look, this is how they should be used. And then it compares that to the photo that is submitted and gives us code. Yeah. So people know at headquarter that, okay, my staff is looking well groomed and they're supposed to.
+
+Ankit Singh (37:31): Yeah, got it. Perfect. Looks good.
+
+Ojaswini Khadanga (37:42): Did I miss anything? I think that's all. Yeah, it's.
+
+Ankit Singh (37:48): It's. It's pretty straightforward in terms of what it is. So it's easier in, you know, trying to navigate and trying to figure things out.
+
+Ojaswini Khadanga (37:56): Oh, yeah. There are interesting things. One second. So that if somebody has changed stores or resigned or new employees have joined, then there is somebody at the back end who is assigning and reassigning task. That can be done through just simple commands over the chat. For example, if I am an employee at some store and I want to shift my store, I am today at some different store, I can just say that or trans. It will just look at which store it is, it will ask me, I'll say yes, it will just answer me immediately. And then I'll receive all the checklists and everything that's been assigned to me. Sometimes. That's all right, I can show you. I've done this previously. Chart me over. One second. Yeah. So if.
+
+Ojaswini Khadanga (39:42): Let's say, okay, so the links are valid for three hours. Okay. After that, it. It's. It, it. It expires. Let's say if. Let's say the link is valid and I've missed it and I can just ask you resend me this link and it will just share it with me. Yeah. So CI asked transfer me to Cormangla store. It asked me and then say if this is the one. I said yes. And then that's. I'm transferred to this order. So it's ease of use and you don't really have to, you know, bug anybody for anything.
+
+Ankit Singh (40:19): Yeah, got it.
+
+Ojaswini Khadanga (40:22): Perfect.
+
+Ankit Singh (40:27): All right. I think that gives me a really good idea about it. Pavitra was supposed to run me through this long time back, but.
+
+Ojaswini Khadanga (40:36): But it's actually very straightforward. If you will just, you know, go through it, you will get it in.
+
+Ankit Singh (40:41): Yeah, there's no issue as such. How many employees does opsara currently have.
+
+Ojaswini Khadanga (40:48): Like full timers, five people full time, including Pavitra. Yeah. So there is Bhumika, who's taking care of sales. There is me, I'm taking care of brand marketing. And there is sort of. Whose sort of was also in. Of customer support. Customers customer support. There is Mriga, who was also there in luca. She is taking care of a product. They mostly take care of product. That's all. And then apart from them, there are people who have worked part time.
+
+Ankit Singh (41:32): Got it. Understood. Perfect. Good, good, good. If I have any doubts, I'll just.
+
+Ojaswini Khadanga (41:42): I'm supposed to share all the content and document and everything.
+
+Ankit Singh (41:46): Oh, yeah, I was supposed to share the video as well.
+
+Ojaswini Khadanga (41:49): Yeah, please. It's okay. I mean, if you do it by tomorrow, but please try to send it by also.
+
+Ankit Singh (41:56): So it's. It's just going to be a video, right? Like, my name wouldn't be tagged anywhere, would it, in the post.
+
+Ojaswini Khadanga (42:04): I. I mean, if you don't want it. I would not.
+
+Ankit Singh (42:06): Yeah, please don't. Because I'm. I'm working full time and, you know, I don't want that.
+
+Ojaswini Khadanga (42:11): Yeah, yeah, yeah, that's fine.
+
+Ankit Singh (42:14): Got it. Perfect. I'll send it through. Yeah. All right.
+
+Ojaswini Khadanga (42:18): I'll also share all the documents that I have that would be helpful for you to share with.
+
+Ankit Singh (42:24): Good. Perfect. Thanks.
+
+Ojaswini Khadanga (42:26): All right.
+
+Ankit Singh (42:27): Bye. Bye. Cheers.
+

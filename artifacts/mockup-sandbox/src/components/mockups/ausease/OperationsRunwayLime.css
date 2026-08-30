@@ -1,0 +1,146 @@
+:root {
+  --runway-ink: #12382f;
+  --runway-paper: #f4fae9;
+  --runway-card: #fbfff4;
+  --runway-line: #cfe4bc;
+  --runway-muted: #607c70;
+  --runway-coral: #68a91f;
+  --runway-ochre: #e19b28;
+  --runway-teal: #16866e;
+  --runway-violet: #5d8f3c;
+}
+
+.runway-shell {
+  background: #dcebd0;
+  font-family: "DM Sans", ui-sans-serif, sans-serif;
+}
+
+.runway-app {
+  background:
+    radial-gradient(circle at 6% 7%, rgba(181, 231, 89, .23), transparent 24%),
+    radial-gradient(circle at 100% 37%, rgba(22, 134, 110, .11), transparent 28%),
+    var(--runway-paper);
+}
+
+.brand-mark {
+  color: #eaffc9;
+  background: var(--runway-teal);
+  border-radius: 14px 17px 14px 17px;
+  transform: rotate(-8deg);
+}
+
+.brand-mark svg { transform: rotate(8deg); }
+.avatar-button { background: var(--runway-coral); color: #153b2f; border-radius: 12px 17px 14px 16px; }
+.icon-button:hover { color: var(--runway-teal); background: #e8f4d9; }
+.notification-dot { border-color: var(--runway-paper); background: #efaa30; }
+
+.day-strip h1 { letter-spacing: -1.8px; }
+.shift-button { color: #154b3e; background: #d8f19d; border-radius: 18px 14px 17px 12px; }
+.live-pip { background: var(--runway-teal); box-shadow: 0 0 0 4px rgba(22, 134, 110, .14); }
+
+.shift-card {
+  border-color: #153b2f;
+  border-radius: 25px 20px 25px 20px;
+  background: var(--runway-teal);
+  box-shadow: 0 10px 0 rgba(18, 56, 47, .11);
+}
+.shift-score span { color: #d9f78f; }
+.progress-track { background: #0d6a58; }
+.progress-track span { background: #b9ed5c; }
+.shift-footer { color: #c4e3c2; }
+.shift-footer button { color: #e8ffb8; }
+
+.pulse-row { gap: 8px; }
+.pulse-stat {
+  border-color: var(--runway-line);
+  border-radius: 18px 13px 17px 14px;
+  background: rgba(251, 255, 244, .78);
+  transition: transform .2s ease;
+}
+.pulse-stat:hover { transform: translateY(-3px) rotate(-1deg); }
+.pulse-icon.coral, .queue-icon.coral, .sheet-mark.coral { color: #5b9916; background: #e1f6ac; }
+.pulse-icon.ochre, .queue-icon.ochre, .sheet-mark.ochre { color: #ad6c0e; background: #fff0c8; }
+.pulse-icon.teal, .queue-icon.teal, .sheet-mark.teal { color: #08775f; background: #d0f1dc; }
+.pulse-icon.violet, .queue-icon.violet, .sheet-mark.violet { color: #4d8132; background: #e2f1c7; }
+
+.filter-button {
+  border-color: var(--runway-line);
+  border-radius: 16px 11px 14px 12px;
+  color: var(--runway-teal);
+}
+.filter-button:hover { background: #e7f5d0; color: var(--runway-ink); }
+.lane-count { color: #3f6d58; background: #dcecc9; border-radius: 9px 7px 8px 6px; }
+.lane-number { color: #4f9a1b; }
+.lane-held .lane-number { color: #5d8f3c; }
+
+.queue-card {
+  border-color: var(--runway-line);
+  border-radius: 20px 15px 19px 16px;
+  background: rgba(251, 255, 244, .88);
+  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+}
+.queue-card:hover, .queue-card.selected {
+  border-color: #8fca48;
+  background: #fbfff4;
+  transform: translateX(4px) rotate(-.35deg);
+}
+.queue-card:active { transform: translateX(4px) scale(.985); }
+.mini-avatar { color: #26583f; background: #e0efc6; }
+.empty-lane { border-color: #b9d99b; }
+
+.detail-sheet {
+  border-color: #a8d467;
+  border-radius: 22px 17px 21px 16px;
+  background: rgba(251, 255, 244, .97);
+  box-shadow: 0 12px 0 rgba(18, 56, 47, .08), 0 16px 30px rgba(30, 83, 48, .12);
+}
+.sheet-dismiss { color: var(--runway-teal); background: #e6f3d5; border-radius: 10px 8px 9px 7px; }
+.primary-action {
+  color: #153b2f;
+  background: #b9ed5c;
+  border-radius: 14px 11px 13px 10px;
+}
+.primary-action:hover { background: #c9f477; transform: translateY(-2px); }
+.secondary-action { border-color: var(--runway-line); border-radius: 14px 10px 13px 11px; color: var(--runway-teal); }
+
+.team-presence { color: #4f725e; }
+.person-row { border-color: var(--runway-line); transition: transform .2s ease; }
+.person-row:hover { transform: translateX(4px); }
+.person-avatar.coral { color: #4f8c14; background: #e1f6ac; }
+.person-avatar.ochre { color: #ad6c0e; background: #fff0c8; }
+.person-avatar.teal { color: #08775f; background: #d0f1dc; }
+.person-avatar.violet { color: #4d8132; background: #e2f1c7; }
+.team-note { border-radius: 19px 14px 20px 15px; background: #e5f4cf; }
+.note-icon { color: #16866e; background: #ccebb9; border-radius: 11px 8px 10px 8px; }
+
+.ask-orb { color: #4d8b26; background: #ddf1bc; border-radius: 16px 12px 15px 11px; animation: lime-bob 3.8s ease-in-out infinite; }
+.answer-card { border-color: #badb8f; border-radius: 20px 15px 19px 16px; background: #e8f5d9; }
+.answer-label { color: #438524; }
+.answer-card button { color: #32754c; }
+.prompt-grid button { border-color: var(--runway-line); border-radius: 16px 12px 15px 11px; background: rgba(251, 255, 244, .75); transition: transform .2s ease, background .2s ease; }
+.prompt-grid button:hover { background: #e8f5d9; transform: translateY(-3px) rotate(-.5deg); }
+.prompt-grid svg { color: #4d8b26; }
+.ask-composer { border-color: #b9d99b; border-radius: 17px 13px 16px 12px; background: var(--runway-card); }
+.ask-composer button { color: #153b2f; background: #b9ed5c; border-radius: 12px 9px 11px 8px; }
+
+.bottom-nav {
+  border-color: var(--runway-line);
+  background: rgba(244, 250, 233, .93);
+}
+.bottom-nav button { border-radius: 16px 12px 15px 11px; transition: transform .18s ease, color .18s ease, background .18s ease; }
+.bottom-nav button.active { color: #26724e; background: #ddf2bb; }
+.bottom-nav button:hover { color: #246d4e; transform: translateY(-3px); }
+.bottom-nav b { color: #153b2f; background: #b9ed5c; }
+
+.compose-panel {
+  border-radius: 28px 24px 0 0;
+  background: var(--runway-card);
+}
+.compose-head > button { color: var(--runway-teal); background: #e6f3d5; border-radius: 11px 8px 10px 8px; }
+.compose-panel textarea { border-color: #b9d99b; border-radius: 18px 13px 17px 14px; background: #f4fae9; }
+.compose-panel textarea:focus { border-color: #7ebc35; }
+
+@keyframes lime-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}

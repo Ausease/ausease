@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/ausease/"
+title = "Ausease"
+description = "A mobile retail operations hub for frontline store teams. Ausease brings daily tasks, checklists, audits, maintenance issues, inventory follow-ups, and in-app team chat into one practical workspace instead of relying on WhatsApp."
+version = "1.0.0"
+id = "artifacts/ausease"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/ausease/" ]
+localPort = 24478
+
+[services.development]
+run = "pnpm --filter @workspace/ausease run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ausease", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/ausease", "run", "serve" ]
+
+[services.env]
+PORT = "24478"
+BASE_PATH = "/ausease/"

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180" fill="none">
+  <title>Ausease round logo with background</title>
+  <desc id="desc">Ausease circular mark on a warm neutral background</desc>
+  <rect width="180" height="180" rx="18" fill="#F4F0E6"/>
+  <circle cx="90" cy="90" r="68" stroke="#182333" stroke-width="7"/>
+  <path d="M57 97L90 75" stroke="#182333" stroke-width="7" stroke-linecap="round"/>
+  <path d="M106 68L133 92" stroke="#182333" stroke-width="7" stroke-linecap="round"/>
+</svg>
