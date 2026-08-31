@@ -1,0 +1,53 @@
+name: Database race release gate
+
+on:
+  pull_request:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  database-race:
+    name: PostgreSQL 16 race checks
+    runs-on: ubuntu-latest
+    # The service is intentionally isolated to this job. The test command
+    # pushes the current schema into this disposable database before testing.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: ausease_test
+          POSTGRES_USER: ausease_test
+          POSTGRES_PASSWORD: ausease_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ausease_test -d ausease_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      # Supported database version: PostgreSQL 16 (also pinned in .replit).
+      # DATABASE_URL is the only required test environment variable.
+      DATABASE_URL: postgresql://ausease_test:ausease_test@localhost:5432/ausease_test
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Provision schema and run API release tests
+        run: pnpm --filter @workspace/api-server run test:release
